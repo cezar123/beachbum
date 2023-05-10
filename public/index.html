@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<h1>Add Task</h1>
+<form action="../index.php" method="post">
+    <label for="task">Example: <b>task:add +15m "Hello World"</b></label>
+    <input id="task" type="text" name="task">
+    <input type="hidden" name="controller" value="TaskController">
+    <input type="hidden" name="method" value="add">
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

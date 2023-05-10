@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin: 5px 0;
+    height: 5vh;
+    width: 30vw;
+    font-size: large;
+    border-radius: 5px;
+}
+
+button{
+    height: 4vh;
+}
