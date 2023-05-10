@@ -11,9 +11,9 @@ namespace App\Models;
 class Task
 {
     private $id;
+    private $command;
     private $executeAt;
     private $params;
-    private $worker;
 
     /**
      * Task constructor.
