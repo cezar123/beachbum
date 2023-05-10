@@ -15,23 +15,44 @@ class Task
     private $params;
     private $worker;
 
-    public function __construct($executeAt, $params, $worker)
+    /**
+     * Task constructor.
+     * @param string $command
+     * @param string $executeAt
+     * @param string $params
+     */
+    public function __construct($command, $executeAt, $params)
     {
+        $this->command = $command;
         $this->executeAt = $executeAt;
         $this->params = $params;
-        $this->worker = $worker;
     }
 
+    /**
+     * @return bool
+     */
     public function save(){
         // save task to db
         return true;
     }
 
+    /**
+     * @return bool
+     */
+    /**
+     * @return bool
+     */
     public function delete(){
         // delete task
         return true;
     }
 
+    /**
+     * @param $column
+     * @param $operator
+     * @param $value
+     * @return array
+     */
     public static function where($column, $operator, $value){
         $tasks = [];
 
