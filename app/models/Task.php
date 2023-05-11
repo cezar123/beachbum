@@ -3,12 +3,15 @@
 
 namespace App\Models;
 
+use App\Models\Model;
+use Exception;
+
 
 /**
  * Class Task
  * @package App\Models
  */
-class Task
+class Task extends Model
 {
     private $id;
     private $command;
@@ -23,6 +26,7 @@ class Task
      */
     public function __construct($command, $executeAt, $params)
     {
+        parent::__construct();
         $this->command = $command;
         $this->executeAt = $executeAt;
         $this->params = $params;
@@ -32,8 +36,9 @@ class Task
      * @return bool
      */
     public function save(){
-        // save task to db
-        return true;
+        $sql = "INSERT INTO Tasks (id, command , execute_at, params) VALUES (NULL, '".$this->command."', '".$this->executeAt."', '".$this->params."')";
+        return $this->db->exec($sql);
+
     }
 
     /**
@@ -46,20 +51,5 @@ class Task
         // delete task
         return true;
     }
-
-    /**
-     * @param $column
-     * @param $operator
-     * @param $value
-     * @return array
-     */
-    public static function where($column, $operator, $value){
-        $tasks = [];
-
-        // get tasks
-
-        return $tasks;
-    }
-
 
 }

@@ -7,12 +7,53 @@
 </head>
 <body>
 <h1>Add Task</h1>
-<form action="http://localhost:9001/" method="post">
+<form id="addTask" method="post">
     <label for="task">Example: <b>task:add +15m "Hello World"</b></label>
-    <input id="task" type="text" name="task">
+    <input id="task" type="text" name="task" placeholder="Task">
     <input type="hidden" name="controller" value="TaskController">
     <input type="hidden" name="method" value="add">
+    <div class="response" id="success" style="display: none"></div>
+    <div class="response" id="error" style="display: none"></div>
     <button type="submit">Save</button>
 </form>
+
+<script>
+
+    const successMsg = document.getElementById('success');
+    const errorMsg = document.getElementById('error');
+    const form = document.getElementById('addTask');
+    form.addEventListener('submit', formSubmit);
+
+
+    function formSubmit(e) {
+        document.querySelectorAll('.response').forEach(el => el.style.display = 'none');
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('task', document.querySelector('input[name="task"]').value);
+        formData.append('controller', document.querySelector('input[name="controller"]').value);
+        formData.append('method', document.querySelector('input[name="method"]').value);
+
+        fetch('http://localhost:9001/', {
+            headers: {'Accept': 'application/json'},
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        })
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json);
+                successMsg.display = 'block';
+                successMsg.innerText = resp.data;
+            })
+            .catch(err => {
+                console.log(err);
+                errorMsg.display = 'block';
+                errorMsg.innerText = err;
+            });
+
+        return false;
+    }
+</script>
 </body>
 </html>

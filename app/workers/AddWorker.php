@@ -4,6 +4,7 @@
 namespace App\Workers;
 
 use App\Interfaces\WorkerInterface;
+use App\Db\DB;
 
 
 /**
@@ -17,14 +18,22 @@ class AddWorker implements WorkerInterface
     private $keepWorking = true;
 
     /**
-     * @param Task[] $tasks
+     * @param array $tasks
      */
     public function execute($tasks)
     {
         while ($this->keepWorking) {
-            foreach ($tasks as $task) {
-                // save to tasks done
+            $insert = 'INSERT INTO Done ("params") VALUES ';
+            foreach (explode(",", $tasks["params"]) as $param) {
+                $insert .= '("'.$param.'"),';
             }
+
+            $insert = rtrim($insert, ",");
+            DB::getInstance()->exec($insert);
+
+            $delete = 'DELETE FROM Tasks WHERE id in (' . $tasks["ids"] . ')';
+            DB::getInstance()->exec($delete);
+
             $this->keepWorking = false;
         }
     }

@@ -14,12 +14,12 @@ form{
 
 input{
     margin: 5px 0;
-    height: 5vh;
-    width: 30vw;
+    height: 2rem;
+    display: block;
     font-size: large;
     border-radius: 5px;
 }
 
 button{
-    height: 4vh;
+    height: 1.5rem;
 }
