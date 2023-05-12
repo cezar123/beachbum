@@ -14,3 +14,5 @@ php /LOCAL_PATH_TO_APP/beachbum/app/db/Migrations.php
 * * * * * php /LOCAL_PATH_TO_APP/beachbum/app/crons/work.php >> /LOCAL_PATH_TO_APP/beachbum/app/crons/log-`date +\%Y-\%m-\%d`.log  2>&1
 ```
 
+- [x] Open in browser the static file app/public/index.html and start adding tasks
+
